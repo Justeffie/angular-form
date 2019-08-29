@@ -46,6 +46,7 @@ h4 {
 .white {
   overflow: hidden;
   width: 25%;
+  min-height: 380px;
   margin:20px;
   position: absolute;
   box-shadow: -4px 0px 24px 3px rgba(0,0,0,0.15);
@@ -64,4 +65,3 @@ h4 {
   transform: translateX(110%);
   top: -20%;
 }
-

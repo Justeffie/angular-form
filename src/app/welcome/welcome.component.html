@@ -1,16 +1,15 @@
 <section>
   <div class="white white-left" #white>
-    <app-login></app-login>
-    <app-signup></app-signup>
+    <router-outlet></router-outlet>
   </div>
   <div class="account-container">
     <div class="account">
       <h4>Have an account?</h4>
-      <button (click)="toggleForms()">Log in</button>
+      <button routerLink="login" (click)="toggleForms()">Log in</button>
     </div>
     <div class="no-account">
       <h4>Don't have an account?</h4>
-      <button (click)="toggleForms()">Sign up</button>
+      <button routerLink="signup" (click)="toggleForms()">Sign up</button>
     </div>
   </div>
 </section>

@@ -17,6 +17,7 @@ export class SignupComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.initForm();
+    
     this.formSubscription = this.formServce.showSignup.subscribe(show => {
       if (show){
         this.renderer.addClass(this.signup.nativeElement, 'translate');
