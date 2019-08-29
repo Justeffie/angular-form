@@ -1,0 +1,13 @@
+<div class="login">
+  <form  [formGroup]="form" (ngSubmit)="onSumbit()" class="form-group" #login>
+    <label for="email">E-mail</label>
+    <input type="text" id="email" formControlName="email" class="form-control">
+    <span *ngIf="form.get('email').errors?.required  && form.get('email').touched">Email is required</span>
+    <span *ngIf="form.get('email').errors?.email && form.get('email').touched">Invalid email</span>
+    <label for="password">Password</label>
+    <input type="password" id="password" formControlName="password" class="form-control">
+    <span *ngIf="form.get('password').errors?.required  && form.get('password').touched">Password is required</span>
+    <span *ngIf="form.get('password').errors?.minlength  && form.get('password').touched">Password must have at least 6 characters</span>
+    <button type="submit">Log in</button>
+  </form>
+</div>
