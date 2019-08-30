@@ -1,33 +1,19 @@
-import {Component, ElementRef, Input, OnDestroy, OnInit, Renderer2, ViewChild} from '@angular/core';
-import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {FormService} from "../form.service";
-import {Subscription} from "rxjs/index";
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.css']
 })
-export class SignupComponent implements OnInit, OnDestroy {
+export class SignupComponent implements OnInit {
   formulario: FormGroup;
-  formSubscription: Subscription;
   @ViewChild('signup', {static: true}) signup: ElementRef;
 
-  constructor(private formServce: FormService, private renderer: Renderer2) { }
+  constructor() { }
 
   ngOnInit() {
     this.initForm();
-    this.formSubscription = this.formServce.showSignup.subscribe(show => {
-      if (show) {
-        this.renderer.addClass(this.signup.nativeElement, 'translate');
-      } else {
-        this.renderer.removeClass(this.signup.nativeElement, 'translate');
-      }
-    });
-  }
-
-  ngOnDestroy() {
-    this.formSubscription.unsubscribe();
   }
 
   initForm() {

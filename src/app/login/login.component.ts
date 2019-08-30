@@ -1,7 +1,7 @@
-import {Component, ElementRef, EventEmitter, Input, OnInit, Output, Renderer2, ViewChild} from '@angular/core';
-import {FormControl, FormGroup, NgForm, Validators} from "@angular/forms";
-import {FormService} from "../form.service";
-import {Subscription} from "rxjs/index";
+import {Component, ElementRef, Input, OnInit, Renderer2, ViewChild} from '@angular/core';
+import {FormControl, FormGroup,  Validators} from '@angular/forms';
+import {FormService} from '../form.service';
+import {Subscription} from 'rxjs/index';
 
 @Component({
   selector: 'app-login',
@@ -12,21 +12,11 @@ export class LoginComponent implements OnInit {
   form: FormGroup;
   @Input() showLogin: boolean;
   @ViewChild('login', {static: true}) login: ElementRef;
-  formSubscription: Subscription;
-  show: boolean;
 
-  constructor(private renderer: Renderer2, private formServce: FormService) { }
+  constructor() { }
 
   ngOnInit() {
     this.initForm();
-    this.formSubscription = this.formServce.showSignup.subscribe(show => {
-      this.show = show;
-      if (show){
-        this.renderer.addClass(this.login.nativeElement, 'translate');
-      } else {
-        this.renderer.removeClass(this.login.nativeElement, 'translate');
-      }
-    })
   }
 
   initForm() {
