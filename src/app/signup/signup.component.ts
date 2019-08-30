@@ -17,14 +17,13 @@ export class SignupComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.initForm();
-    
     this.formSubscription = this.formServce.showSignup.subscribe(show => {
-      if (show){
+      if (show) {
         this.renderer.addClass(this.signup.nativeElement, 'translate');
       } else {
         this.renderer.removeClass(this.signup.nativeElement, 'translate');
       }
-    })
+    });
   }
 
   ngOnDestroy() {
@@ -44,8 +43,8 @@ export class SignupComponent implements OnInit, OnDestroy {
   }
 
   checkInputs(inputName: string, event) {
-    if (this.formulario.get(inputName).value != event.target.value) {
-      this.formulario.get('pass').setErrors( {'passwordNotEqual': true});
+    if (this.formulario.get(inputName).value !== event.target.value) {
+      this.formulario.get('pass').setErrors( { 'passwordNotEqual': true});
     } else {
       this.formulario.get('pass').setErrors(null);
     }

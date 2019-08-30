@@ -19,7 +19,6 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.initForm();
-    console.log(this.showLogin);
     this.formSubscription = this.formServce.showSignup.subscribe(show => {
       this.show = show;
       if (show){

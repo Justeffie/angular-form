@@ -1,44 +1,32 @@
-import {
-    trigger,
-    transition,
-    style,
-    query,
-    group,
-    animateChild,
-    animate,
-    keyframes,
-  } from '@angular/animations';
+import {animate, group, query, stagger, style, transition, trigger} from '@angular/animations';
 
-  export const transformer =
-  trigger('routeAnimations', [
-    transition('* => isLeft', transformTo({ x: -100, y: -10}) ),
-    transition('* => isRight', transformTo({ x: 100, y: -100, rotate: 90 }) ),
-    transition('isRight => *', transformTo({ x: -100, y: -100, rotate: 360 }) ),
-    transition('isLeft => *', transformTo({ x: 100, y: -100, rotate: -360 }) )
-]);
-
-
-function transformTo({x = 100, y = 0, rotate = 0}) {
-  const optional = { optional: true };
-  return [
-    query(':enter, :leave', [
-      style({
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        width: '100%'
-      })
-    ], optional),
-    query(':enter', [
-      style({ transform: `translate(${x}%, ${y}%) rotate(${rotate}deg)`})
-    ]),
+export const routerTransition = trigger('routerTransition', [
+  transition('login => signup', [
+    query(':enter, :leave', style({ position: 'fixed', width: '100%' })
+      , { optional: true }),
     group([
-      query(':leave', [
-        animate('600ms ease-out', style({ transform: `translate(${x}%, ${y}%) rotate(${rotate}deg)`}))
-      ], optional),
-      query(':enter', [
-        animate('600ms ease-out', style({ transform: `translate(0, 0) rotate(0)`}))
-      ])
-    ]),
-  ];
-}
+    query(':leave', [
+      style({transform: 'translateY(0%)', opacity: 1}),
+      animate('2s ease-in-out', style({transform: 'translateY(-100%)', opacity: 0}))
+    ], { optional: true}),
+    query(':enter', [
+      style({transform: 'translateX(-100%)', opacity: 0}),
+      animate('1s ease-in-out', style({transform: 'translateX(0%)', opacity: 1}))
+      ], {optional: true})
+    ])
+  ]),
+  transition('signup => login', [
+    query(':leave, :enter ', style({ position: 'fixed', width: '100%' })
+      , { optional: true }),
+    group([
+    query(':leave', [
+      style({transform: 'translateX(0%)', opacity: 1}),
+      animate('1s ease-in-out', style({transform: 'translateX(-100%)', opacity: 0}))
+    ], { optional: true}),
+    query(':enter', [
+        style({transform: 'translateY(-100%)', opacity: 0}),
+        animate('1s ease-in-out', style({transform: 'translateY(0%)', opacity: 1}))
+      ], {optional: true})
+  ])
+  ])
+  ]);

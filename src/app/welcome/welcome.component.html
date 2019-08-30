@@ -1,6 +1,6 @@
 <section>
-  <div class="white white-left" #white>
-    <router-outlet></router-outlet>
+  <div class="white white-left" #white [@routerTransition]="getState(o)">
+    <router-outlet #o="outlet"></router-outlet>
   </div>
   <div class="account-container">
     <div class="account">
