@@ -1,7 +1,6 @@
-import {Component, ElementRef, Input, OnInit, Renderer2, ViewChild} from '@angular/core';
+import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
 import {FormControl, FormGroup,  Validators} from '@angular/forms';
-import {FormService} from '../form.service';
-import {Subscription} from 'rxjs/index';
+
 
 @Component({
   selector: 'app-login',
